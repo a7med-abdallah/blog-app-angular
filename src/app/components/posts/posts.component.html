@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-post-form [currentPost]="currentPost" [isEdit]="isEdit" (newPost)="onNewPost($event)" (updatedPost)="onUpdatedPost($event)"></app-post-form>
+    </div>
+    <div class="col-md-4" *ngFor="let post of posts">
+      <div class="card">
+        <div class="card-body">
+          <h6><a routerLink="/post/{{ post.id }}">{{ post.title | slice : 0 : 35 }}<span *ngIf="post.title.length > 35">....</span></a></h6>
+          <p>{{ post.body | slice : 0 : 100  }}....</p>
+          <button class="btn btn-success mr-2" (click)="editPost(post)">Edit</button>
+          <button class="btn btn-danger" (click)="removePost(post)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
